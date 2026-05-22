@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cwveu7udid36n"]
+
+[ext_resource type="Script" uid="uid://v7aix8q46j24" path="res://scenes/test_3d.gd" id="1_sr87j"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sr87j"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_psit6"]
+sky_material = SubResource("ProceduralSkyMaterial_sr87j")
+
+[sub_resource type="Environment" id="Environment_7yo4j"]
+background_mode = 2
+sky = SubResource("Sky_psit6")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2itsy"]
+albedo_color = Color(0.24191976, 0.6008842, 0.84962636, 1)
+metallic = 0.34
+roughness = 0.4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2itsy"]
+lightmap_size_hint = Vector2i(52, 44)
+material = SubResource("StandardMaterial3D_2itsy")
+top_radius = 2.0
+bottom_radius = 0.1
+height = 4.913
+radial_segments = 100
+rings = 10
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sr87j"]
+albedo_color = Color(0.88110423, 0.5998861, 0.9610252, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_sr87j"]
+material = SubResource("StandardMaterial3D_sr87j")
+
+[node name="Test3D" type="Node3D" unique_id=345512765]
+script = ExtResource("1_sr87j")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1916665955]
+environment = SubResource("Environment_7yo4j")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=178306943]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1746175279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18891144, 1.3040905, 0.023500443)
+mesh = SubResource("CylinderMesh_2itsy")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1830019912]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.085723, 1.3669084, 5.546877)
+
+[node name="Donut" type="MeshInstance3D" parent="." unique_id=1168465149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.097888, 1.5517364, -0.119305134)
+mesh = SubResource("TorusMesh_sr87j")
