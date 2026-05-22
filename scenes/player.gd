@@ -1,19 +1,11 @@
 extends CharacterBody3D
 
-
 const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-
+var direction := 0.0
 
 func _physics_process(delta: float) -> void:
-	
-	var input_dir := Input.get_vector("left", "right", "forward", "backward")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+	direction = Input.get_axis("left", "right")
+	velocity.x = direction * SPEED
+	$craft_speederC.rotation.z = move_toward($craft_speederC.rotation.z, -0.5 * direction, delta)
+	velocity.y = sin(Time.get_ticks_msec() / 1000.0) / 4.0 + sin(Time.get_ticks_msec() / 800.0) / 9.0
 	move_and_slide()
