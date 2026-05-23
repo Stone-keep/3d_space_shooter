@@ -42,9 +42,9 @@ shadow_mesh = SubResource("ArrayMesh_dauhg")
 [sub_resource type="SphereShape3D" id="SphereShape3D_fitd0"]
 radius = 0.451291
 
-[node name="Meteor" type="Area3D" unique_id=1043179708]
+[node name="Meteor" type="Area3D" unique_id=1043179708 groups=["meteors"]]
 collision_layer = 4
-collision_mask = 7
+collision_mask = 4
 script = ExtResource("1_tcwo0")
 
 [node name="meteor" type="MeshInstance3D" parent="." unique_id=1121845897]
@@ -55,3 +55,6 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=986347327]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.03488493, 0)
 shape = SubResource("SphereShape3D_fitd0")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

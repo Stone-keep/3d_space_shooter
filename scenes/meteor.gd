@@ -22,3 +22,12 @@ func _physics_process(delta: float) -> void:
 	position.z += speed * delta
 	position.x += drift_x * delta
 	rotation += random_rotation_speed * delta
+
+func _on_area_entered(area: Area3D) -> void:
+	if area.is_in_group("lasers"):
+		area.queue_free()
+		queue_free()
+
+func _on_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		print("got hit")
