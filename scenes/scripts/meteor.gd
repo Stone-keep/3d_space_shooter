@@ -5,14 +5,17 @@ var random_scale: float
 var random_rotation_speed: Vector3
 var drift_x: float
 var can_move := true
+var points: int
 
 @onready var mesh := $meteor
 @onready var flash_material := mesh.material_overlay as ShaderMaterial
-signal add_score(points: float)
+signal add_score(points: int)
 
 var player: Node3D
 
 func _ready() -> void:
+	position.z = -70
+	position.x = randf_range(-40, 40)
 	speed = randf_range(4.0, 6.0)
 	random_scale = randf_range(1.0, 2.0)
 	scale = Vector3.ONE * random_scale
@@ -21,18 +24,21 @@ func _ready() -> void:
 	randf_range(-0.5, 0.5),
 	randf_range(-0.5, 0.5)
 	)
-	drift_x = randf_range(-0.5, 0.5)
+	drift_x = randf_range(-1, 1)
+	points = roundi(random_scale * 100)
 
 func _physics_process(delta: float) -> void:
 	if can_move:
 		position.z += speed * delta
 		position.x += drift_x * delta
 		rotation += random_rotation_speed * delta
+	if position.z >= 20:
+		queue_free()
 
 func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("lasers"):
 		can_move = false
-		add_score.emit(scale.x)
+		add_score.emit(points)
 		flash()
 		$meteor.material_overlay.set_shader_parameter("progress", 1.0)
 		area.destroy()

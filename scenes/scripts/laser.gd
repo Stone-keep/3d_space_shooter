@@ -1,6 +1,7 @@
 extends Area3D
 
-const SPEED = 10
+const SPEED := 10
+const SHOOT_RANGE := 20
 var can_move := true
 
 @onready var mesh := $Red
@@ -14,8 +15,10 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if can_move:
 		position.z -= SPEED * delta
-	if position.z <= -150:
-		queue_free()
+	if position.z <= -SHOOT_RANGE:
+		var tween = create_tween()
+		tween.tween_property(self, "scale", Vector3.ZERO, 0.3)
+		tween.tween_callback(queue_free)
 
 func flash() -> void:
 	var tween := create_tween()
