@@ -58,22 +58,22 @@ autostart = true
 [node name="PositionMarkers" type="Node3D" parent="Meteors" unique_id=1563296777]
 
 [node name="Marker3D" type="Marker3D" parent="Meteors/PositionMarkers" unique_id=797778082]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.270102, 0, -37.55725)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.27, 0, -37.557)
 
 [node name="Marker3D7" type="Marker3D" parent="Meteors/PositionMarkers" unique_id=1538399850]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.163165, 0, -39.086975)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.693493, 0, -39.086975)
 
 [node name="Marker3D8" type="Marker3D" parent="Meteors/PositionMarkers" unique_id=566351089]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.6361685, 0, -46.27298)
 
 [node name="Marker3D9" type="Marker3D" parent="Meteors/PositionMarkers" unique_id=1611316640]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2672992, 0, -45.185974)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.484313, 0, -45.185974)
 
 [node name="Marker3D10" type="Marker3D" parent="Meteors/PositionMarkers" unique_id=1469272040]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.451233, 0, -43.047974)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.52055, 0, -43.047974)
 
 [node name="Marker3D11" type="Marker3D" parent="Meteors/PositionMarkers" unique_id=1481040358]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.233135, 0, -42.11798)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6626015, 0, -42.11798)
 
 [node name="Marker3D12" type="Marker3D" parent="Meteors/PositionMarkers" unique_id=191578104]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.68229, 0, -40.97998)
@@ -82,7 +82,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.68229, 0, -40.97998)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.110700965, 0, -40.556976)
 
 [node name="Marker3D14" type="Marker3D" parent="Meteors/PositionMarkers" unique_id=1686031520]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2667007, 0, -43.70598)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.650591, 0, -43.70598)
 
 [node name="Marker3D15" type="Marker3D" parent="Meteors/PositionMarkers" unique_id=1101196913]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1802988, 0, -43.06398)
@@ -94,13 +94,25 @@ transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 5.106641, 0, -41.060
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 7.096221, 0, -44.353622)
 
 [node name="Marker3D4" type="Marker3D" parent="Meteors/PositionMarkers" unique_id=191841214]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 1.8765135, 0, -47.251495)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0.34058523, 0, -47.251495)
 
 [node name="Marker3D5" type="Marker3D" parent="Meteors/PositionMarkers" unique_id=806923850]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 7.2578077, 0, -49.523308)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 12.045625, 0, -49.523308)
 
 [node name="Marker3D6" type="Marker3D" parent="Meteors/PositionMarkers" unique_id=1550286159]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -3.359829, 0, -52.386864)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=2071885055]
+
+[node name="ScoreLabel" type="Label" parent="HUD" unique_id=756088282]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.03
+anchor_right = 0.5
+anchor_bottom = 0.03
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Score: 0"
 
 [connection signal="shoot_laser" from="Player" to="." method="_on_player_shoot_laser"]
 [connection signal="timeout" from="Meteors/MeteorTimer" to="." method="_on_meteor_timer_timeout"]

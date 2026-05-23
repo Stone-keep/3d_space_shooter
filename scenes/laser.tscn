@@ -50,8 +50,8 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_01q60")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a7dhc"]
-radius = 1.9575195
-height = 9.008789
+radius = 2.4023438
+height = 10.5703125
 
 [node name="Laser" type="Area3D" unique_id=109005899 groups=["lasers"]]
 collision_layer = 4
@@ -59,7 +59,7 @@ collision_mask = 9
 script = ExtResource("1_a7dhc")
 
 [node name="Red" type="MeshInstance3D" parent="." unique_id=381577731]
-transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, -0.15, 2.2649372e-08, -0.15, 6.5567085e-09, 0, 0, 0)
+transform = Transform3D(-0.2, -3.019916e-08, 1.3200473e-15, 0, -8.742278e-09, -0.2, 3.019916e-08, -0.2, 8.742278e-09, 0, 0, 0)
 material_overlay = SubResource("ShaderMaterial_412cd")
 mesh = SubResource("ArrayMesh_of1pi")
 skeleton = NodePath("")

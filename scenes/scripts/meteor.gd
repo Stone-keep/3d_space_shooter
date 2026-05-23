@@ -8,6 +8,7 @@ var can_move := true
 
 @onready var mesh := $meteor
 @onready var flash_material := mesh.material_overlay as ShaderMaterial
+signal add_score(points: float)
 
 var player: Node3D
 
@@ -31,6 +32,7 @@ func _physics_process(delta: float) -> void:
 func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("lasers"):
 		can_move = false
+		add_score.emit(scale.x)
 		flash()
 		$meteor.material_overlay.set_shader_parameter("progress", 1.0)
 		area.destroy()
