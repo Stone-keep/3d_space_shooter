@@ -1,0 +1,58 @@
+[gd_scene format=4 uid="uid://bse8ad85s8nlm"]
+
+[ext_resource type="Script" uid="uid://cmp2052nn4pa" path="res://scenes/laser.gd" id="1_a7dhc"]
+[ext_resource type="Texture2D" uid="uid://cwbougsvfqnig" path="res://graphics/Red_Red.png" id="1_xmihv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybpk1"]
+resource_name = "Red"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_xmihv")
+texture_repeat = false
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_01q60"]
+_surfaces = [{
+"aabb": AABB(-1.890625, -5.671875, -1.890625, 3.78125, 9.453125, 3.78125),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAwACAAEAAAACAAQAAwAEAAIAAAAFAAEAAwABAAUAAAAEAAUAAwAFAAQA"),
+"name": "Red",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("/3////9/AAD/f8zMAAAAAP//zMz/fwAA/38AAP9/AAD/f8zM//8AAAAAzMz/fwAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_of1pi"]
+resource_name = "Red_Cylinder_004"
+_surfaces = [{
+"aabb": AABB(-1.890625, -5.671875, -1.890625, 3.78125, 9.453125, 3.78125),
+"attribute_data": PackedByteArray("mb//fzN/mJ///5ifmb//////mJ8zf5ifmb//fzN/mJ///5ifmb//////mJ8zf5ifmb//fzN/mJ///5ifmb//////mJ8zf5ifmb//fzN/mJ///5ifmb//////mJ8zf5if"),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADwAQABEAEgATABQAFQAWABcA"),
+"material": SubResource("StandardMaterial3D_ybpk1"),
+"name": "Red",
+"primitive": 3,
+"uv_scale": Vector4(2.0124998, 2, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("/3////9/HBf/f8zMAAAcF///zMz/fxwX/38AAP9/lQb//8zM/3+VBv9/zMwAAJUG/3////9/dwn//8zM/393Cf9/zMz//3cJ/38AAP9/uQL/f8zM//+5Av//zMz/f7kC/3////9/dwn/f8zM//93CQAAzMz/f3cJ/38AAP9/uQIAAMzM/3+5Av9/zMz//7kC/3////9/HBcAAMzM/38cF/9/zMwAABwX/38AAP9/lQb/f8zMAACVBgAAzMz/f5UGzNLmiszS5orM0uaKNAPBpzQDwac0A8Gnm558l5uefJebnnyXeQey3HkHstx5B7LcguicHoLonB6C6JweslyFeLJchXiyXIV4GPXMUhj1zFIY9cxSwSfKfMEnynzBJ8p8")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_01q60")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xmihv"]
+data = PackedVector3Array(0, 3.7812998, 0, 0, 1.8906, -1.8906, 1.8906, 1.8906, 0, 0, -5.6719, 0, 1.8906, 1.8906, 0, 0, 1.8906, -1.8906, 0, 3.7812998, 0, 1.8906, 1.8906, 0, 0, 1.8906, 1.8906, 0, -5.6719, 0, 0, 1.8906, 1.8906, 1.8906, 1.8906, 0, 0, 3.7812998, 0, 0, 1.8906, 1.8906, -1.8906, 1.8906, 0, 0, -5.6719, 0, -1.8906, 1.8906, 0, 0, 1.8906, 1.8906, 0, 3.7812998, 0, -1.8906, 1.8906, 0, 0, 1.8906, -1.8906, 0, -5.6719, 0, 0, 1.8906, -1.8906, -1.8906, 1.8906, 0)
+
+[node name="Laser" type="Area3D" unique_id=109005899]
+script = ExtResource("1_a7dhc")
+
+[node name="Red" type="MeshInstance3D" parent="." unique_id=381577731]
+transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, -0.15, 2.2649372e-08, -0.15, 6.5567085e-09, 0, 0, 0)
+mesh = SubResource("ArrayMesh_of1pi")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=427553799]
+transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, -0.15, 2.2649372e-08, -0.15, 6.5567085e-09, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_xmihv")
