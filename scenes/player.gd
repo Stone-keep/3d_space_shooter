@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED = 5.0
+const SPEED = 10.0
 var direction := 0.0
 signal shoot_laser(pos: Vector3)
 

@@ -126,7 +126,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_vd3wm")
 
-[node name="Player" type="CharacterBody3D" unique_id=346190635]
+[node name="Player" type="CharacterBody3D" unique_id=346190635 groups=["player"]]
+collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_3vyb7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1705075647]
