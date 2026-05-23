@@ -1,7 +1,14 @@
 [gd_scene format=4 uid="uid://bse8ad85s8nlm"]
 
-[ext_resource type="Script" uid="uid://cmp2052nn4pa" path="res://scenes/laser.gd" id="1_a7dhc"]
+[ext_resource type="Script" uid="uid://cmp2052nn4pa" path="res://scenes/scripts/laser.gd" id="1_a7dhc"]
 [ext_resource type="Texture2D" uid="uid://cwbougsvfqnig" path="res://graphics/Red_Red.png" id="1_xmihv"]
+[ext_resource type="Shader" uid="uid://7m67uia8278j" path="res://scenes/shaders/flash.gdshader" id="2_jjj73"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_412cd"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_jjj73")
+shader_parameter/progress = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybpk1"]
 resource_name = "Red"
@@ -53,6 +60,7 @@ script = ExtResource("1_a7dhc")
 
 [node name="Red" type="MeshInstance3D" parent="." unique_id=381577731]
 transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, -0.15, 2.2649372e-08, -0.15, 6.5567085e-09, 0, 0, 0)
+material_overlay = SubResource("ShaderMaterial_412cd")
 mesh = SubResource("ArrayMesh_of1pi")
 skeleton = NodePath("")
 

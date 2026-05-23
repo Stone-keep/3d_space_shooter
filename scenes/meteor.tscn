@@ -1,6 +1,13 @@
 [gd_scene format=4 uid="uid://cb8fj2hr1bh0m"]
 
-[ext_resource type="Script" uid="uid://byc26qa8hs4jo" path="res://scenes/meteor.gd" id="1_tcwo0"]
+[ext_resource type="Script" uid="uid://byc26qa8hs4jo" path="res://scenes/scripts/meteor.gd" id="1_pxso2"]
+[ext_resource type="Shader" uid="uid://7m67uia8278j" path="res://scenes/shaders/flash.gdshader" id="2_pxso2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tcwo0"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_pxso2")
+shader_parameter/progress = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mhnd1"]
 resource_name = "rockTrack"
@@ -44,11 +51,12 @@ radius = 0.451291
 
 [node name="Meteor" type="Area3D" unique_id=1043179708 groups=["meteors"]]
 collision_layer = 4
-collision_mask = 4
-script = ExtResource("1_tcwo0")
+collision_mask = 6
+script = ExtResource("1_pxso2")
 
 [node name="meteor" type="MeshInstance3D" parent="." unique_id=1121845897]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -1.0896459, 0)
+material_overlay = SubResource("ShaderMaterial_tcwo0")
 mesh = SubResource("ArrayMesh_wqkvx")
 skeleton = NodePath("")
 

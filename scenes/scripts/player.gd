@@ -17,7 +17,6 @@ func _physics_process(delta: float) -> void:
 
 func shoot():
 	if Input.is_action_just_pressed("shoot"):
-		print(can_shoot)
 		if can_shoot:
 			can_shoot = false
 			$ShootCooldown.start()
