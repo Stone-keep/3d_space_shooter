@@ -14,8 +14,8 @@ signal add_score(points: int)
 var player: Node3D
 
 func _ready() -> void:
-	position.z = -70
-	position.x = randf_range(-40, 40)
+	position.z = randf_range(-70.0, -90.0)
+	position.x = randf_range(-70.0, 70.0)
 	speed = randf_range(4.0, 6.0)
 	random_scale = randf_range(1.0, 2.0)
 	scale = Vector3.ONE * random_scale
@@ -32,8 +32,6 @@ func _physics_process(delta: float) -> void:
 		position.z += speed * delta
 		position.x += drift_x * delta
 		rotation += random_rotation_speed * delta
-	if position.z >= 20:
-		queue_free()
 
 func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("lasers"):
@@ -53,3 +51,7 @@ func flash() -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		print("got hit")
+
+func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
+	print("exited")
+	queue_free()

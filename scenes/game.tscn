@@ -52,10 +52,8 @@ fov = 90.0
 [node name="Meteors" type="Node3D" parent="." unique_id=1763173628]
 
 [node name="MeteorTimer" type="Timer" parent="Meteors" unique_id=607871473]
-wait_time = 0.2
+wait_time = 0.1
 autostart = true
-
-[node name="PositionMarkers" type="Node3D" parent="Meteors" unique_id=1648538648]
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=2071885055]
 

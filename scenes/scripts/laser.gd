@@ -3,6 +3,7 @@ extends Area3D
 const SPEED := 10
 const SHOOT_RANGE := 20
 var can_move := true
+var is_despawning := false
 
 @onready var mesh := $Red
 @onready var flash_material := mesh.material_overlay as ShaderMaterial
@@ -15,9 +16,11 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if can_move:
 		position.z -= SPEED * delta
-	if position.z <= -SHOOT_RANGE:
+	if position.z <= -SHOOT_RANGE and not is_despawning:
+		is_despawning = true
+		$CollisionShape3D.disabled = true
 		var tween = create_tween()
-		tween.tween_property(self, "scale", Vector3.ZERO, 0.3)
+		tween.tween_property(self, "scale", Vector3(0.01, 0.01, 0.01), 0.3)
 		tween.tween_callback(queue_free)
 
 func flash() -> void:
