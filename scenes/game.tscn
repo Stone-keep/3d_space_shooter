@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://seloxhegi07u" path="res://scenes/scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bse8ad85s8nlm" path="res://scenes/laser.tscn" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://cb8fj2hr1bh0m" path="res://scenes/meteor.tscn" id="3_iywne"]
+[ext_resource type="PackedScene" uid="uid://dbf4gy737ybql" path="res://scenes/obstacle.tscn" id="4_iywne"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -29,6 +30,17 @@ size = Vector2(400, 400)
 script = ExtResource("1_yqjtg")
 laser_scene = ExtResource("2_lbhrr")
 meteor_scene = ExtResource("3_iywne")
+obstacle_scene = ExtResource("4_iywne")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=2071885055]
+
+[node name="ScoreLabel" type="Label" parent="HUD" unique_id=756088282]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "Score: 0"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1534084086]
 environment = SubResource("Environment_lnu2h")
@@ -40,7 +52,7 @@ shadow_enabled = true
 [node name="Player" parent="." unique_id=346190635 instance=ExtResource("1_uwrxv")]
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=1827301176]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.141, -3, -181.61)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.141, -2, -181.61)
 mesh = SubResource("PlaneMesh_uwrxv")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1148623397]
@@ -51,21 +63,18 @@ fov = 90.0
 
 [node name="Meteors" type="Node3D" parent="." unique_id=1763173628]
 
-[node name="MeteorTimer" type="Timer" parent="Meteors" unique_id=607871473]
+[node name="Obstacles" type="Node3D" parent="." unique_id=1119130949]
+
+[node name="Timers" type="Node3D" parent="." unique_id=1157500346]
+
+[node name="MeteorTimer" type="Timer" parent="Timers" unique_id=607871473]
 wait_time = 0.1
 autostart = true
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=2071885055]
-
-[node name="ScoreLabel" type="Label" parent="HUD" unique_id=756088282]
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.03
-anchor_right = 0.5
-anchor_bottom = 0.03
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 40
-text = "Score: 0"
+[node name="ObstacleTimer" type="Timer" parent="Timers" unique_id=683290774]
+wait_time = 2.0
+autostart = true
 
 [connection signal="shoot_laser" from="Player" to="." method="_on_player_shoot_laser"]
-[connection signal="timeout" from="Meteors/MeteorTimer" to="." method="_on_meteor_timer_timeout"]
+[connection signal="timeout" from="Timers/MeteorTimer" to="." method="_on_meteor_timer_timeout"]
+[connection signal="timeout" from="Timers/ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]

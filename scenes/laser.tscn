@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cmp2052nn4pa" path="res://scenes/scripts/laser.gd" id="1_a7dhc"]
 [ext_resource type="Texture2D" uid="uid://cwbougsvfqnig" path="res://graphics/Red_Red.png" id="1_xmihv"]
 [ext_resource type="Shader" uid="uid://7m67uia8278j" path="res://scenes/shaders/flash.gdshader" id="2_jjj73"]
+[ext_resource type="AudioStream" uid="uid://chauj2dyhuci0" path="res://audio/laser8.wav" id="4_412cd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_412cd"]
 resource_local_to_scene = true
@@ -67,3 +68,7 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=427553799]
 transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, -0.15, 2.2649372e-08, -0.15, 6.5567085e-09, 0, 0, 0.113812685)
 shape = SubResource("CapsuleShape3D_a7dhc")
+
+[node name="ShootingSound" type="AudioStreamPlayer3D" parent="." unique_id=111189480]
+stream = ExtResource("4_412cd")
+autoplay = true

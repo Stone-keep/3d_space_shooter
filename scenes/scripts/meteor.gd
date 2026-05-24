@@ -50,8 +50,7 @@ func flash() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		print("got hit")
+		print("hit a meteor")
 
 func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
-	print("exited")
 	queue_free()
