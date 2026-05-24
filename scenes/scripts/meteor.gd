@@ -36,6 +36,9 @@ func _physics_process(delta: float) -> void:
 		position.x += drift_x * delta
 		rotation += random_rotation_speed * delta
 
+func stop_moving() -> void:
+	can_move = false
+
 func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("lasers"):
 		can_move = false

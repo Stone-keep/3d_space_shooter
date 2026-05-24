@@ -2,6 +2,7 @@ extends Area3D
 
 const SPEED := 3
 var random_scale: float
+var can_move := true
 
 @onready var meshes := $Meshes.get_children()
 @onready var collision_shapes := {
@@ -30,11 +31,15 @@ func _ready() -> void:
 	collision_shapes[visible_mesh.name].disabled = false
 
 func _physics_process(delta: float) -> void:
-	position.z += SPEED * delta
+	if can_move:
+		position.z += SPEED * delta
 
 func set_xz_position(x: float, z: float):
 	position.x = x
 	position.z = z
+
+func stop_moving() -> void:
+	can_move = false
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):

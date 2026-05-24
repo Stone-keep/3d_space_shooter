@@ -33,3 +33,6 @@ func destroy():
 	flash()
 	await get_tree().create_timer(0.3).timeout
 	queue_free()
+
+func stop_moving() -> void:
+	can_move = false

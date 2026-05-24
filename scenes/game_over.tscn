@@ -89,5 +89,5 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("1_wqhvx")
 theme_override_font_sizes/font_size = 50
-text = "Press ENTER to restart!"
+text = "Press ENTER to restart or ESCAPE to quit"
 horizontal_alignment = 1
