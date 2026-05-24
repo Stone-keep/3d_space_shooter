@@ -40,3 +40,18 @@ func spawn_obstacles(amount_min: int, amount_max: int, z_min: float, z_max: floa
 
 func _on_obstacle_timer_timeout() -> void:
 	spawn_obstacles(3, 6, game_size["back"], game_size["back"] - 10)
+
+func trigger_game_end(destroyed_by_what: String):
+	Global.last_score = score
+	Global.destroyed_by_what = destroyed_by_what
+	if score >= Global.high_score:
+		Global.high_score = score
+	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+
+func _on_player_lose_health(health: int, destroyed_by_what: String) -> void:
+	if health == 2:
+		$HUD/Control/HBoxContainer/HealthIcon3.texture = load("res://graphics/ui/ship_health_lost_v4.png")
+	elif health == 1:
+		$HUD/Control/HBoxContainer/HealthIcon2.texture = load("res://graphics/ui/ship_health_lost_v4.png")
+	elif health <= 0:
+		trigger_game_end(destroyed_by_what)

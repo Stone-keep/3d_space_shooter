@@ -8,6 +8,7 @@ var can_shoot := true
 var invulnerable := false
 
 signal shoot_laser(pos: Vector3)
+signal lose_health(health: int, destroyed_by_what: String)
 
 func _physics_process(delta: float) -> void:
 	direction = Input.get_axis("left", "right")
@@ -35,15 +36,13 @@ func flash_invulnerability() -> void:
 func _on_shoot_cooldown_timeout() -> void:
 	can_shoot = true
 
-func got_hit(by_what: String):
+func got_hit(destroyed_by_what: String):
 	if not invulnerable:
-		print("You crashed into %s!" % by_what)
 		invulnerable = true
 		$InvulnerabilityTimer.start()
 		$CollisionSound.play()
 		health -= 1
-		if health <= 0:
-			print("dead")
+		lose_health.emit(health, destroyed_by_what)
 		flash_invulnerability()
 
 func _on_invulnerability_timer_timeout() -> void:

@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bse8ad85s8nlm" path="res://scenes/laser.tscn" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://cb8fj2hr1bh0m" path="res://scenes/meteor.tscn" id="3_iywne"]
 [ext_resource type="PackedScene" uid="uid://dbf4gy737ybql" path="res://scenes/obstacle.tscn" id="4_iywne"]
+[ext_resource type="FontFile" uid="uid://d378sxay3fpq5" path="res://fonts/Oxanium-SemiBold.ttf" id="5_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://bsp0d6o4g73uj" path="res://graphics/ui/ship_health_full_v4.png" id="5_u5sy4"]
-[ext_resource type="AudioStream" uid="uid://bfqmb1iu5vwef" path="res://audio/background_music.mp3" id="6_p57ef"]
 [ext_resource type="Script" uid="uid://cxfug5mxoiwlw" path="res://scenes/scripts/hud.gd" id="7_fy8bc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
@@ -45,6 +45,7 @@ anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("5_0tnpc")
 text = "Score: 0"
 
 [node name="Control" type="Control" parent="HUD" unique_id=2142531925]
@@ -114,11 +115,6 @@ autostart = true
 wait_time = 2.0
 autostart = true
 
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=1972969073]
-stream = ExtResource("6_p57ef")
-volume_db = -5.0
-autoplay = true
-
 [node name="GameBorders" type="Node3D" parent="." unique_id=945812200]
 
 [node name="RightBorder" type="StaticBody3D" parent="GameBorders" unique_id=1254896735]
@@ -135,6 +131,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.013126, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.10668945)
 shape = SubResource("BoxShape3D_p57ef")
 
+[connection signal="lose_health" from="Player" to="." method="_on_player_lose_health"]
 [connection signal="shoot_laser" from="Player" to="." method="_on_player_shoot_laser"]
 [connection signal="timeout" from="Timers/MeteorTimer" to="." method="_on_meteor_timer_timeout"]
 [connection signal="timeout" from="Timers/ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]

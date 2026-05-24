@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://hin0diq1m7eh"]
+
+[ext_resource type="Script" uid="uid://6m3quysiqdbx" path="res://scenes/game_over.gd" id="1_tbwuq"]
+[ext_resource type="FontFile" uid="uid://d378sxay3fpq5" path="res://fonts/Oxanium-SemiBold.ttf" id="1_wqhvx"]
+[ext_resource type="Texture2D" uid="uid://0yxklygomuq1" path="res://graphics/ui/ship_health_lost_v4.png" id="1_xeevv"]
+
+[node name="GameOver" type="Control" unique_id=1303080564]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tbwuq")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1320101485]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1520187388]
+custom_minimum_size = Vector2(1080, 200)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOver" type="Label" parent="VBoxContainer" unique_id=507202489]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_wqhvx")
+theme_override_font_sizes/font_size = 70
+text = "GAME OVER"
+
+[node name="DestroyedBy" type="Label" parent="VBoxContainer" unique_id=1809072047]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_wqhvx")
+theme_override_font_sizes/font_size = 40
+text = "Your ship was destroyed by XXX!"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer" unique_id=1216881105]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture = ExtResource("1_xeevv")
+expand_mode = 1
+
+[node name="Score" type="Label" parent="VBoxContainer" unique_id=1037444987]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_wqhvx")
+theme_override_font_sizes/font_size = 40
+text = "
+Score:
+0"
+horizontal_alignment = 1
+
+[node name="HighScore" type="Label" parent="VBoxContainer" unique_id=514215492]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_wqhvx")
+theme_override_font_sizes/font_size = 40
+text = "High Score:
+0"
+horizontal_alignment = 1
+
+[node name="Restart" type="Label" parent="VBoxContainer" unique_id=636017944]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_wqhvx")
+theme_override_font_sizes/font_size = 50
+text = "Press ENTER to restart!"
+horizontal_alignment = 1
