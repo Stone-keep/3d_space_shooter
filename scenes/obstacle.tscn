@@ -2,9 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dpmy3uxr65xwj" path="res://scenes/scripts/obstacle.gd" id="1_7ukg5"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_3xr6u"]
-size = Vector3(0.5595703, 0.46043396, 0.38964844)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y3eyw"]
 resource_name = "rockTrack"
 albedo_color = Color(0.9916599, 0.7863615, 0.70064974, 1)
@@ -1008,13 +1005,30 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nek1j")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3xr6u"]
+size = Vector3(0.42163086, 0.46043396, 0.38964844)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rock_crystals"]
+size = Vector3(0.4326172, 0.44543457, 0.51623535)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rover"]
+size = Vector3(0.39941406, 0.38083497, 0.45)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_satelliteDish"]
+size = Vector3(0.55, 0.6085205, 0.45)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_turret_single"]
+size = Vector3(0.45117188, 0.6131592, 0.5605469)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_turret_double"]
+size = Vector3(0.65405273, 0.56374514, 0.43200684)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gate_complex"]
+size = Vector3(0.6911621, 0.82150877, 0.13574219)
+
 [node name="Obstacle" type="Area3D" unique_id=1669065913 groups=["obstacles"]]
 collision_mask = 2
 script = ExtResource("1_7ukg5")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1317588084]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0008723587, 0.25610444, -0.005235493)
-shape = SubResource("BoxShape3D_3xr6u")
 
 [node name="Meshes" type="Node3D" parent="." unique_id=887857192]
 
@@ -1078,5 +1092,47 @@ transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 visible = false
 mesh = SubResource("ArrayMesh_jlrwp")
 skeleton = NodePath("")
+
+[node name="rock_collision" type="CollisionShape3D" parent="." unique_id=1317588084]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024590515, 0.25269488, -0.0072644353)
+visible = false
+shape = SubResource("BoxShape3D_3xr6u")
+disabled = true
+
+[node name="rock_crystals_collision" type="CollisionShape3D" parent="." unique_id=829252851]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007837851, 0.26771727, -0.007894535)
+visible = false
+shape = SubResource("BoxShape3D_rock_crystals")
+disabled = true
+
+[node name="rover_collision" type="CollisionShape3D" parent="." unique_id=187276464]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17041747, 0.03)
+visible = false
+shape = SubResource("BoxShape3D_rover")
+disabled = true
+
+[node name="satelliteDish_collision" type="CollisionShape3D" parent="." unique_id=1826537409]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27926025, 0)
+visible = false
+shape = SubResource("BoxShape3D_satelliteDish")
+disabled = true
+
+[node name="turret_single_collision" type="CollisionShape3D" parent="." unique_id=1800243142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28157958, -0.03)
+visible = false
+shape = SubResource("BoxShape3D_turret_single")
+disabled = true
+
+[node name="turret_double_collision" type="CollisionShape3D" parent="." unique_id=1324223435]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27687258, -0.01214668)
+visible = false
+shape = SubResource("BoxShape3D_turret_double")
+disabled = true
+
+[node name="gate_complex_collision" type="CollisionShape3D" parent="." unique_id=1151840390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38575438, 0.0020205192)
+visible = false
+shape = SubResource("BoxShape3D_gate_complex")
+disabled = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
