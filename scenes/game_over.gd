@@ -7,6 +7,8 @@ func _ready() -> void:
 		$VBoxContainer/DestroyedBy.text = "Your ship crashed into an obstacle!"
 	$VBoxContainer/Score.text = "Score:\n%s" % Global.last_score
 	$VBoxContainer/HighScore.text = "High Score:\n%s" % Global.high_score
+	var difficulty_percent := ceili((Global.difficulty - 1.0) * 100.0)
+	$VBoxContainer/DifficultyModifier.text = "Final Difficulty Modifier: +%d%%" % difficulty_percent
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("restart"):

@@ -10,6 +10,11 @@ var invulnerable := false
 signal shoot_laser(pos: Vector3)
 signal lose_health(health: int, destroyed_by_what: String)
 
+func _ready() -> void:
+	invulnerable = true
+	$InvulnerabilityTimer.start()
+	flash_invulnerability()
+
 func _physics_process(delta: float) -> void:
 	direction = Input.get_axis("left", "right")
 	velocity.x = direction * SPEED
@@ -27,9 +32,9 @@ func shoot():
 
 func flash_invulnerability() -> void:
 	var tween := create_tween()
-	tween.set_loops(4)
-	tween.tween_property($craft_speederC, "transparency", 0.7, 0.25)
-	tween.tween_property($craft_speederC, "transparency", 0.2, 0.25)
+	tween.set_loops(5)
+	tween.tween_property($craft_speederC, "transparency", 0.7, 0.3)
+	tween.tween_property($craft_speederC, "transparency", 0.2, 0.3)
 	await tween.finished
 	$craft_speederC.transparency = 0.0
 

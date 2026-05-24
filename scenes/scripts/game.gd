@@ -11,9 +11,12 @@ var game_size = {
 }
 
 var score := 0
+const DIFFICULTY_MULTIPLIER := 1.2
 
 func _ready() -> void:
 	spawn_obstacles(30, 60, game_size["front"], game_size["back"])
+	Global.difficulty = 1.0
+	$HUD/Control.update_difficulty(Global.difficulty)
 
 func _on_player_shoot_laser(pos: Vector3) -> void:
 	var laser = laser_scene.instantiate()
@@ -26,7 +29,7 @@ func _on_meteor_timer_timeout() -> void:
 	meteor.add_score.connect(_on_meteor_scored)
 
 func _on_meteor_scored(points: int) -> void:
-	score += points
+	score += round(points * Global.difficulty)
 	$HUD/ScoreLabel.text = "Score: %s" % score
 
 func spawn_obstacles(amount_min: int, amount_max: int, z_min: float, z_max: float):
@@ -55,3 +58,13 @@ func _on_player_lose_health(health: int, destroyed_by_what: String) -> void:
 		$HUD/Control/HBoxContainer/HealthIcon2.texture = load("res://graphics/ui/ship_health_lost_v4.png")
 	elif health <= 0:
 		trigger_game_end(destroyed_by_what)
+
+
+func _on_difficulty_timer_timeout() -> void:
+	Global.difficulty *= DIFFICULTY_MULTIPLIER
+	$Timers/MeteorTimer.wait_time /= DIFFICULTY_MULTIPLIER
+	$Timers/MeteorTimer.start()
+	$Timers/ObstacleTimer.wait_time /= DIFFICULTY_MULTIPLIER
+	$Timers/ObstacleTimer.start()
+	$HUD/Control.update_difficulty(Global.difficulty)
+	$HUD/Control.show_difficulty_up()

@@ -44,9 +44,39 @@ obstacle_scene = ExtResource("4_iywne")
 anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
+offset_left = -30.0
+offset_right = 30.0
+offset_bottom = 17.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("5_0tnpc")
 text = "Score: 0"
+
+[node name="DifficultyUp" type="Label" parent="HUD" unique_id=1882963604]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -11.5
+offset_right = 49.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_0tnpc")
+text = "Difficulty Up!"
+
+[node name="DifficultyLabel" type="Label" parent="HUD" unique_id=1802064660]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("5_0tnpc")
+text = "Difficulty Modifier: +0%"
+horizontal_alignment = 2
 
 [node name="Control" type="Control" parent="HUD" unique_id=2142531925]
 layout_mode = 3
@@ -115,6 +145,10 @@ autostart = true
 wait_time = 2.0
 autostart = true
 
+[node name="DifficultyTimer" type="Timer" parent="Timers" unique_id=1931413934]
+wait_time = 60.0
+autostart = true
+
 [node name="GameBorders" type="Node3D" parent="." unique_id=945812200]
 
 [node name="RightBorder" type="StaticBody3D" parent="GameBorders" unique_id=1254896735]
@@ -135,3 +169,4 @@ shape = SubResource("BoxShape3D_p57ef")
 [connection signal="shoot_laser" from="Player" to="." method="_on_player_shoot_laser"]
 [connection signal="timeout" from="Timers/MeteorTimer" to="." method="_on_meteor_timer_timeout"]
 [connection signal="timeout" from="Timers/ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]
+[connection signal="timeout" from="Timers/DifficultyTimer" to="." method="_on_difficulty_timer_timeout"]

@@ -19,7 +19,7 @@ var player: Node3D
 func _ready() -> void:
 	position.z = randf_range(-70.0, -90.0)
 	position.x = randf_range(-70.0, 70.0)
-	speed = randf_range(4.0, 6.0)
+	speed = randf_range(4.0, 6.0) * Global.difficulty
 	random_scale = randf_range(1.0, 2.0)
 	scale = Vector3.ONE * random_scale
 	random_rotation_speed = Vector3(
