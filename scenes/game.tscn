@@ -5,7 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://bse8ad85s8nlm" path="res://scenes/laser.tscn" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://cb8fj2hr1bh0m" path="res://scenes/meteor.tscn" id="3_iywne"]
 [ext_resource type="PackedScene" uid="uid://dbf4gy737ybql" path="res://scenes/obstacle.tscn" id="4_iywne"]
+[ext_resource type="Texture2D" uid="uid://bsp0d6o4g73uj" path="res://graphics/ui/ship_health_full_v4.png" id="5_u5sy4"]
 [ext_resource type="AudioStream" uid="uid://bfqmb1iu5vwef" path="res://audio/background_music.mp3" id="6_p57ef"]
+[ext_resource type="Script" uid="uid://cxfug5mxoiwlw" path="res://scenes/scripts/hud.gd" id="7_fy8bc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -27,6 +29,9 @@ albedo_color = Color(0.58926874, 0.4754948, 0.33769068, 1)
 material = SubResource("StandardMaterial3D_uwrxv")
 size = Vector2(400, 400)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_p57ef"]
+size = Vector3(0.43359375, 1.7158203, 2.019287)
+
 [node name="Game" type="Node3D" unique_id=649466922]
 script = ExtResource("1_yqjtg")
 laser_scene = ExtResource("2_lbhrr")
@@ -40,15 +45,45 @@ anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 50
 text = "Score: 0"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1534084086]
-environment = SubResource("Environment_lnu2h")
+[node name="Control" type="Control" parent="HUD" unique_id=2142531925]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_fy8bc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Control" unique_id=1172182833]
+layout_mode = 1
+anchors_preset = -1
+
+[node name="HealthIcon1" type="TextureRect" parent="HUD/Control/HBoxContainer" unique_id=445325628]
+layout_mode = 2
+texture = ExtResource("5_u5sy4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HealthIcon2" type="TextureRect" parent="HUD/Control/HBoxContainer" unique_id=1565423326]
+layout_mode = 2
+texture = ExtResource("5_u5sy4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HealthIcon3" type="TextureRect" parent="HUD/Control/HBoxContainer" unique_id=1777545365]
+layout_mode = 2
+texture = ExtResource("5_u5sy4")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1318714459]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="DirectionalLight3D" unique_id=1534084086]
+environment = SubResource("Environment_lnu2h")
 
 [node name="Player" parent="." unique_id=346190635 instance=ExtResource("1_uwrxv")]
 
@@ -83,6 +118,22 @@ autostart = true
 stream = ExtResource("6_p57ef")
 volume_db = -5.0
 autoplay = true
+
+[node name="GameBorders" type="Node3D" parent="." unique_id=945812200]
+
+[node name="RightBorder" type="StaticBody3D" parent="GameBorders" unique_id=1254896735]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.914318, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameBorders/RightBorder" unique_id=839914939]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.10668945)
+shape = SubResource("BoxShape3D_p57ef")
+
+[node name="LeftBorder" type="StaticBody3D" parent="GameBorders" unique_id=250985878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.013126, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameBorders/LeftBorder" unique_id=858711148]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.10668945)
+shape = SubResource("BoxShape3D_p57ef")
 
 [connection signal="shoot_laser" from="Player" to="." method="_on_player_shoot_laser"]
 [connection signal="timeout" from="Timers/MeteorTimer" to="." method="_on_meteor_timer_timeout"]
