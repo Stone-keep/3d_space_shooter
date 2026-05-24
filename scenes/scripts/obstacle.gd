@@ -32,7 +32,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if can_move:
-		position.z += SPEED * delta
+		position.z += SPEED * delta * Global.difficulty
 
 func set_xz_position(x: float, z: float):
 	position.x = x

@@ -37,7 +37,7 @@ func _on_meteor_timer_timeout() -> void:
 func _on_meteor_scored(points: int) -> void:
 	if game_ending:
 		return
-	score += round(points * Global.difficulty)
+	score += floori(points * Global.difficulty)
 	$HUD/ScoreLabel.text = "Score: %s" % score
 
 func spawn_obstacles(amount_min: int, amount_max: int, z_min: float, z_max: float):
