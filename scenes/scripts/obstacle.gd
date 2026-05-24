@@ -38,4 +38,4 @@ func set_xz_position(x: float, z: float):
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		print("hit an obstacle")
+		body.got_hit("obstacle")

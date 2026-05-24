@@ -71,4 +71,5 @@ shape = SubResource("CapsuleShape3D_a7dhc")
 
 [node name="ShootingSound" type="AudioStreamPlayer3D" parent="." unique_id=111189480]
 stream = ExtResource("4_412cd")
+volume_db = -15.0
 autoplay = true

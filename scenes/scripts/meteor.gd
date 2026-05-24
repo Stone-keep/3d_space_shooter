@@ -11,6 +11,9 @@ var points: int
 @onready var flash_material := mesh.material_overlay as ShaderMaterial
 signal add_score(points: int)
 
+@export var crash_sounds: Array[AudioStream]
+@onready var crash_sound := $CrashSound
+
 var player: Node3D
 
 func _ready() -> void:
@@ -37,6 +40,7 @@ func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("lasers"):
 		can_move = false
 		add_score.emit(points)
+		play_crash_sound()
 		flash()
 		$meteor.material_overlay.set_shader_parameter("progress", 1.0)
 		area.destroy()
@@ -48,9 +52,13 @@ func flash() -> void:
 	tween.tween_property(flash_material, "shader_parameter/progress", 1.0, 0.1)
 	tween.tween_property(flash_material, "shader_parameter/progress", 0.0, 0.2)
 
+func play_crash_sound():
+	crash_sound.stream = crash_sounds.pick_random()
+	crash_sound.play()
+
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		print("hit a meteor")
+		body.got_hit("meteor")
 
 func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 	queue_free()

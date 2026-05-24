@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bse8ad85s8nlm" path="res://scenes/laser.tscn" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://cb8fj2hr1bh0m" path="res://scenes/meteor.tscn" id="3_iywne"]
 [ext_resource type="PackedScene" uid="uid://dbf4gy737ybql" path="res://scenes/obstacle.tscn" id="4_iywne"]
+[ext_resource type="AudioStream" uid="uid://bfqmb1iu5vwef" path="res://audio/background_music.mp3" id="6_p57ef"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -51,6 +52,9 @@ shadow_enabled = true
 
 [node name="Player" parent="." unique_id=346190635 instance=ExtResource("1_uwrxv")]
 
+[node name="AudioListener3D" type="AudioListener3D" parent="Player" unique_id=940268803]
+current = true
+
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=1827301176]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.141, -2, -181.61)
 mesh = SubResource("PlaneMesh_uwrxv")
@@ -74,6 +78,11 @@ autostart = true
 [node name="ObstacleTimer" type="Timer" parent="Timers" unique_id=683290774]
 wait_time = 2.0
 autostart = true
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=1972969073]
+stream = ExtResource("6_p57ef")
+volume_db = -5.0
+autoplay = true
 
 [connection signal="shoot_laser" from="Player" to="." method="_on_player_shoot_laser"]
 [connection signal="timeout" from="Timers/MeteorTimer" to="." method="_on_meteor_timer_timeout"]

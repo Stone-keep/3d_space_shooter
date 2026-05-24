@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://d4iwvjm1uh02n"]
 
 [ext_resource type="Script" uid="uid://cpmjf01mqrjnv" path="res://scenes/scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="AudioStream" uid="uid://cru0yavdawb0g" path="res://audio/explosion.wav" id="2_g2els"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
 radius = 0.27246094
@@ -143,4 +144,13 @@ skeleton = NodePath("")
 wait_time = 0.5
 one_shot = true
 
+[node name="CollisionSound" type="AudioStreamPlayer3D" parent="." unique_id=160619816]
+stream = ExtResource("2_g2els")
+volume_db = -10.0
+
+[node name="InvulnerabilityTimer" type="Timer" parent="." unique_id=1993683862]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="timeout" from="ShootCooldown" to="." method="_on_shoot_cooldown_timeout"]
+[connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]
